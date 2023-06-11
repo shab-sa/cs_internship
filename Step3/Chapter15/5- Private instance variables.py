@@ -2,16 +2,15 @@
 # restriction will this modification impose on using the class?
 # this variable is not accessible outside the class or through class instance
 
+
 class Rectangle:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-        self.__dimension = 2
+    def __init__(self):
+        self.__width = 4
+        self.__height = 5
 
     def area(self):
-        return (self.width+self.height)*2
+        return (self.__width+self.__height)*2
 
 
-rectangle = Rectangle(3, 5)
+rectangle = Rectangle()
 print(f'Area of rectangle is {rectangle.area()}')
-#print(rectangle.__dimension)

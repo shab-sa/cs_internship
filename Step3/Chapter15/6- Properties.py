@@ -5,23 +5,32 @@ class Rectangle:
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.dimension = 2
 
     @property
-    def dimension(self):
-        return self.__dimension
+    def width(self):
+        return self.__width
 
-    @dimension.setter
-    def dimension(self, d):
-        if d < 0:
-            raise valueerror("Dimension can not be negative")
-        self.__dimension = d
+    @property
+    def height(self):
+        return self.__height
+
+    @width.setter
+    def width(self, width):
+        if width < 0:
+            raise ValueError("Width can not be negative")
+        self.__width = width
+
+    @height.setter
+    def height(self, height):
+        if height < 0:
+            raise ValueError("Height can not be negative")
+        self.__height = height
 
     def area(self):
         return (self.width+self.height)*2
 
 
-rectangle = Rectangle(3, 5)
-rectangle.dimension = 5
+rectangle = Rectangle(-3, 5)
+rectangle.height = 5
 print(f'Area of rectangle is {rectangle.area()}')
-print(rectangle.dimension)
+print(rectangle.height)

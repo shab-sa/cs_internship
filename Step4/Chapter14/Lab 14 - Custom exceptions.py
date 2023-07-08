@@ -24,8 +24,9 @@ def clean_file(file_name, clean_file_name):
                 # write all words for line
                 for cleaned_word in cleaned_words:
                     outfile.write(cleaned_word+'\n')
+    except FileNotFoundError as e:
+        print(e)
     except Exception as e:
-        # FileNotFoundError
         print(e)
 
 
@@ -39,9 +40,11 @@ def words_count(file_name):
         keys.sort(reverse=True, key=lambda item: item[1])
         print('Three most frequent words are: ', keys[:3])
         print('Three least frequent words are: ', keys[-3:])
+    except FileNotFoundError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
     except Exception as e:
-        # FileNotFoundError
-        # IndexError
         print(e)
 
 

@@ -1,4 +1,4 @@
-#import requests
+import requests
 # import io
 # import pathlib
 # import pandas as pd
@@ -7,7 +7,9 @@ import xlrd
 import datetime
 import zipfile
 import urllib.request
-
+from pathlib import Path
+import glob
+import re
 
 # url='https://www.histdata.com/download-free-forex-historical-data/?/excel/1-minute-bar-quotes/eurusd/2018'
 # urllib.request.urlretrieve(url,'TEST.txt')
@@ -22,18 +24,30 @@ import urllib.request
 z = zipfile.ZipFile('HISTDATA_COM_XLSX_EURUSD_M12018.zip')
 z.extractall()
 
-xlrd.xlsx.ensure_elementtree_imported(False, None)
-xlrd.xlsx.Element_has_iter = True
+with zipfile.ZipFile('DAT_XLSX_EURUSD_M1_2018.xlsx', 'r') as xlsx:
+    xlsx.extractall()
 
-workbook = xlrd.open_workbook('DAT_XLSX_EURUSD_M1_2018.xlsx')
-worksheet = workbook. sheet_by_index(0)
-row_count = worksheet.nrows
-col_count = worksheet.ncols
-for cur_row in range(0, 10):  # row_count):
-    row = worksheet.row_values(cur_row, start_colx=0, end_colx=None)
-    row[0] = datetime.datetime(
-        *xlrd.xldate_as_tuple(row[0], workbook.datemode)).strftime('%Y-%m-%d %H:%M:%S')
-    print(row)
+xml_files = Path.cwd().glob("**/*.xml")
+for i in xml_files:
+    print(i)
+
+find_datas = re.compile('<c r="([A-Z]+)([0-9]+)" s="\d+"><v>(.*?)</v></c>')
+print(find_datas)
+
+re.findall()
+
+# xlrd.xlsx.ensure_elementtree_imported(False, None)
+# xlrd.xlsx.Element_has_iter = True
+
+# workbook = xlrd. open_workbook('DAT_XLSX_EURUSD_M1_2018.xlsx')
+# worksheet = workbook. sheet_by_index(0)
+# row_count = worksheet.nrows
+# col_count = worksheet.ncols
+# for cur_row in range(0, 10):  # row_count):
+#     row = worksheet.row_values(cur_row, start_colx=0, end_colx=None)
+#     row[0] = datetime.datetime(
+#         *xlrd.xldate_as_tuple(row[0], workbook.datemode)).strftime('%Y-%m-%d %H:%M:%S')
+#     print(row)
 
 
 # for cur_path in pathlib.Path('.').glob('*.xlsx'):

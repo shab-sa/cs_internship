@@ -3,4 +3,4 @@
 
 # the shelve object only accept string as keys while dictionaries have many more options
 # like integer, float or booleans. It stores data on disk not in memory.
-# I ddoes not support concurrency, disk accesses for large I/o might slow down the program
+# I does not support concurrency, disk accesses for large I/o might slow down the program
